@@ -89,5 +89,13 @@ module.exports.login = (req, res) => {
 }
 
 
-
+module.exports.signOut = (req, res) => {
+    auth.signOut().then(() => {
+        res.redirect('/');
+    }, (error) => {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        console.log(errorMessage);
+    });
+}
 

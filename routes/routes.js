@@ -13,7 +13,7 @@ module.exports = (app, route) => {
 
     app.route("/dashboard")
         .get((req, res)=>{
-            res.send("dashboard page");
+            res.render("dashboard");
         });
 
     app.route("/income")
@@ -30,6 +30,9 @@ module.exports = (app, route) => {
         .get((req, res)=>{
             res.send("budget history page");
         });
+    
+    app.route("/signOut")
+        .get(auth.signOut);
 
     app.route("*")
         .get((req, res)=>{
