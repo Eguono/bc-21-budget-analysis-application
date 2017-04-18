@@ -1,4 +1,4 @@
-
+const auth = require("../controller/auth.js");
 
 module.exports = (app, route) => {
     app.route("/")
@@ -8,8 +8,8 @@ module.exports = (app, route) => {
 
     app.route("/register")
         .get((req, res)=>{
-            res.render("register");
-        });
+            res.render("register", {error: null});
+        }).post(auth.register);
 
     app.route("/login")
         .get((req, res)=>{
