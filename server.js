@@ -11,7 +11,7 @@ const route = express.Router();
 
 
 //listening on port 5000
-const port = 5000 || process.env.PORT;
+const port = process.env.PORT|| 5000;
 
 //setup static directory
 app.use(express.static("./public"));
