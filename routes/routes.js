@@ -8,7 +8,7 @@ module.exports = (app, route) => {
 
     app.route("/register")
         .get((req, res)=>{
-            res.send("register page");
+            res.render("register");
         });
 
     app.route("/login")

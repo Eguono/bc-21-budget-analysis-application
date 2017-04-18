@@ -13,7 +13,7 @@ const route = express.Router();
 const port = 5000 || process.env.PORT;
 
 //setup static directory
-express.static("public");
+app.use(express.static("./public"));
 
 //Setup ejs as view engine
 app.set('views', process.cwd() + '/views');
