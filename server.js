@@ -1,5 +1,7 @@
-const express = require("express"),
-    bodyParser = require("body-parser");
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const webRoutes = require("./routes/routes.js");
 
 //Initialize Express App
 const app = express();
@@ -21,10 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //routes
-route("/")
-    .get((req, res) => {
-        res.send("Working!");
-    });
+webRoutes(app, route);
 
 app.listen(port, () => {
     console.log("Listening on port: " + port);
