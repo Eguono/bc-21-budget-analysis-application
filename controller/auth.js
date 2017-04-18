@@ -61,5 +61,33 @@ module.exports.register = (req, res) => {
 
 }
 
+module.exports.login = (req, res) => {
+    let email = req.body.email;
+    let password = req.body.password;
+
+    req.checkBody('email', 'Email is required').notEmpty();
+    req.checkBody('email', 'Email is not valid').isEmail();
+    req.checkBody('password', 'Password is required').notEmpty();
+
+    let errors = req.validationErrors();
+
+    if (errors) {
+        let errormsg = errors[0].msg;
+        res.render('login', {
+            error: errormsg
+        });
+    } else {
+        auth.signInWithEmailAndPassword(email, password)
+            .then((user) => {
+                res.redirect('/dashboard');
+            }).catch(err => {
+                let errorCode = err.code;
+                let errorMessage = err.message;
+                return res.render('login', { error: errorMessage })
+            })
+    }
+}
+
+
 
 

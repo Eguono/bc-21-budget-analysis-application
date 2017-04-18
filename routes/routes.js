@@ -2,19 +2,14 @@ const auth = require("../controller/auth.js");
 
 module.exports = (app, route) => {
     app.route("/")
-        .get((req, res) => {
-            res.send("It lives!!!!!");
-        });
+        .get((req, res)=>{
+            res.render("login", {error: null});
+        }).post(auth.login);
 
     app.route("/register")
         .get((req, res)=>{
             res.render("register", {error: null});
         }).post(auth.register);
-
-    app.route("/login")
-        .get((req, res)=>{
-            res.send("login page");
-        });
 
     app.route("/dashboard")
         .get((req, res)=>{
