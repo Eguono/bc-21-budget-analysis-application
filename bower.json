@@ -1,0 +1,26 @@
+{
+  "name": "bc-21-budget-analysis-application",
+  "description": "This is a budget analysis application",
+  "main": "server.js",
+  "authors": [
+    "Eguonoghene Efekemo"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "Express",
+    "Firebase",
+    "Body-Parser"
+  ],
+  "homepage": "https://github.com/Eguono/bc-21-budget-analysis-application",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
