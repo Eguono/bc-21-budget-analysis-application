@@ -1,2 +1,130 @@
-<% include partials/head %>
+<head>
+      <title>Budget Analysis Application | Dashboard</title>
+      
+
+      <link rel="shortcut icon" type="image/jpeg" href="img/budget.jpg" sizes="16x16 32x32 64x64">
+      <link rel="apple-touch-icon" sizes="120x120" href="img/budget.jpg">
+      <script src="lib/jquery/dist/jquery.min.js"></script>   
+
+      <link type="text/css" rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css"  media="screen,projection"/>
+      <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.min.css">
+      <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+     
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
 <% include partials/nav %>
+<div class = "container">
+    <div class = "row">
+        <div class= "col-lg-4">
+            <div class = "well">
+                <h4 class="card-title">Income</h4>
+                <p class="card-text">Some quick example text</p>
+                <button type="button" data-target="#myModal" data-toggle ="modal" class="btn btn-primary">Tap to add income</button>
+            </div>
+        </div>
+        <div class= "col-md-4">
+            <div class = "well">
+                <h4 class="card-title">Expenses</h4>
+                <p class="card-text">Some quick example text</p>
+                <button type="button" data-target="#expensesModal" data-toggle ="modal" class="btn btn-primary">Tap to input expenses</button>
+            </div>
+        </div>
+        <div class= "col-md-4">
+            <div class = "well">
+                <h4 class="card-title">Budget</h4>
+                <p class="card-text">Some quick example text</p>
+                <button type="button" data-target="#budgetModal" data-toggle ="modal" class="btn btn-primary">Tap to set budgets</button>
+            </div>
+        </div>
+    </div>
+    <!--Income Modal-->
+    <div id = "myModal" class="modal fade"  role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Income</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class= "form-group">
+                            <label for="incomeAmount">Amount</label>
+                            <input type= "currency"class="form-control" name="amount" placeholder="Enter Income Amount" required autofocus>
+                        </div>
+                        <div class= "form-group">
+                            <label for="description">description</label>
+                            <input type= "text"class="form-control" name= "description"placeholder="Enter Income Amount" required autofocus>
+                        </div>
+                        <select class="form-control" id="incomes" name="incomes">
+                            <option>Award</option>
+                            <option>Gift</option>
+                            <option>Investment</option>
+                            <option>Salary</option>
+                            <option>Others</option>
+                        </select>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Expenses Modal-->
+    <div id = "expensesModal" class="modal fade"  role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Expenses</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class= "form-group">
+                            <label for="expenseAmount">Amount</label>
+                            <input type= "currency"class="form-control" name="expenseamount" placeholder="Enter Expense Amount" required autofocus>
+                        </div>
+                        <div class= "form-group">
+                            <label for="description">Description</label>
+                            <input type= "text"class="form-control" name= "expensedescription"placeholder="Enter Expense Description" required autofocus>
+                        </div>
+                        <select class="form-control" id="expenses" name="expenses">
+                            <option>Clothing</option>
+                            <option>Education</option>
+                            <option>Entertainment</option>
+                            <option>Food and Drink</option>
+                            <option>Health</option>
+                            <option>Home</option>
+                            <option>Payments</option>
+                            <option>Transportation</option>
+                        </select>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Budget Modal-->
+    <div id = "budgetModal" class="modal fade"  role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Budget</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class= "form-group">
+                            <label for="budgetAmount">Amount</label>
+                            <input type= "currency"class="form-control" name="budgetamount" placeholder="Enter Expense Amount" required autofocus>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

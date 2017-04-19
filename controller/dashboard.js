@@ -9,5 +9,5 @@ module.exports.dashboard = (req, res) => {
     if(user === null){
         res.redirect("/");
     }
-    res.render("dashboard");
+    res.render("dashboard", {error: null});
 }
