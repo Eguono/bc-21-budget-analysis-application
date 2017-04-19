@@ -1,4 +1,5 @@
 const auth = require("../controller/auth.js");
+const dashboard = require("../controller/dashboard.js");
 
 module.exports = (app, route) => {
     app.route("/")
@@ -12,9 +13,7 @@ module.exports = (app, route) => {
         }).post(auth.register);
 
     app.route("/dashboard")
-        .get((req, res)=>{
-            res.render("dashboard");
-        });
+        .get(dashboard.dashboard);
 
     app.route("/income")
         .get((req, res)=>{
