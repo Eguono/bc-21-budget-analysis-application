@@ -48,11 +48,11 @@ let drawIncomeChart = () => {
                 titleTextStyle: { fontSize: 18 },
                 tooltip: { showColorCode: true },
                 hAxis: {
-                    title: "Various Expenses",
+                    title: "Amount Spent",
                     titleTextStyle: { fontSize: 16 },
                     girdlines: { count: 8 }
                 },
-                vAxis: { title: "Amount Spent", titleTextStyle: { fontSize: 16 } }
+                vAxis: { title: "Various Expenses", titleTextStyle: { fontSize: 16 } }
             }
             var barchart = new google.visualization.BarChart(document.getElementById('barchartIncome'));
             barchart.draw(data, barOptions);
@@ -104,11 +104,11 @@ let drawExpenseChart = () => {
                 titleTextStyle: { fontSize: 18 },
                 tooltip: { showColorCode: true },
                 hAxis: {
-                    title: "Various Expenses",
+                    title: "Amount",
                     titleTextStyle: { fontSize: 16 },
                     girdlines: { count: 8 }
                 },
-                vAxis: { title: "Amount Spent", titleTextStyle: { fontSize: 16 } }
+                vAxis: { title: "Various Expenses", titleTextStyle: { fontSize: 16 } }
             }
             var barchart = new google.visualization.BarChart(document.getElementById('barchartExpense'));
             barchart.draw(data, barOptions);
