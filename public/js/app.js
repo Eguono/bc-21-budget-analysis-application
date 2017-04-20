@@ -44,15 +44,15 @@ let drawIncomeChart = () => {
             chart.draw(data, options);
             var barOptions = {
                 backgroundColor: { stroke: "#000", strokeWidth: 4, fill: '#bbb' },
-                title: 'Expense',
+                title: 'Income',
                 titleTextStyle: { fontSize: 18 },
                 tooltip: { showColorCode: true },
                 hAxis: {
-                    title: "Amount Spent",
+                    title: "Amount Recieved",
                     titleTextStyle: { fontSize: 16 },
                     girdlines: { count: 8 }
                 },
-                vAxis: { title: "Various Expenses", titleTextStyle: { fontSize: 16 } }
+                vAxis: { title: "Various Incomes", titleTextStyle: { fontSize: 16 } }
             }
             var barchart = new google.visualization.BarChart(document.getElementById('barchartIncome'));
             barchart.draw(data, barOptions);
