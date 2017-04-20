@@ -11,30 +11,37 @@ module.exports.addIncome = (req, res) => {
     let user = auth.currentUser;
     let userId = user.uid;
 
-    ref.child("totalIncome/" + userId).once("value", (snap) => {
+    ref.child("totalIncome/" + userId + "/totalincome").once("value", (snap) => {
         let result = {};
         let incomesRef = ref.child('totalIncome/' + userId);
         let incomeRef = incomesRef.push();
         let incomeKey = incomeRef.key;
+        let today = new Date();
+        let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         let data = {
             amount: amount,
             description: description,
             incomeType: incomeType,
+            date: date,
             id: incomeKey
         };
+
         if (snap.val() === null) {
-            result["totalIncome/" + userId] = amount;
+            result["totalIncome/" + userId + "/totalincome"] = amount;
             result["income/" + userId + "/" + incomeKey] = data;
 
             ref.update(result);
             return res.redirect('/dashboard');
-        }
-        let totalIncome = Number(snap.val()) + Number(amount);
-        result["totalIncome/" + userId] = totalIncome;
-        result["income/" + userId + "/" + incomeKey] = data;
+        } else {
+            let totalIncome = Number(snap.val()) + Number(amount);
 
-        ref.update(result);
-        res.redirect('/dashboard');
+            result["totalIncome/" + userId + "/totalincome"] = totalIncome;
+            result["income/" + userId + "/" + incomeKey] = data;
+
+            ref.update(result);
+            res.redirect('/dashboard');
+        }
+
     }, (err) => {
         var errorCode = err.code;
         var errorMessage = err.message;

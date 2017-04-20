@@ -13,7 +13,7 @@ module.exports.register = (req, res) => {
     let password1 = req.body.password1;
 
     req.checkBody('firstName', 'First Name is Required').notEmpty();
-    req.checkBody('firstName', 'Invalid Full Name').isAlpha();
+    req.checkBody('firstName', 'Invalid First Name').isAlpha();
     req.checkBody('lastName', 'Last Name is Required').notEmpty();
     req.checkBody('lastName', 'Must be alphabets').isAlpha();
     req.checkBody('email', 'Email is Required').notEmpty();

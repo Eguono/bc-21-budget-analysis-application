@@ -11,30 +11,35 @@ module.exports.addExpense = (req, res) => {
     let user = auth.currentUser;
     if (user) {
         let userId = user.uid;
-        ref.child("totalExpense/" + userId).once("value", (snap) => {
+        ref.child("totalExpense/" + userId + "/totalexpense").once("value", (snap) => {
             let result = {};
             let expensesRef = ref.child('totalExpense/' + userId);
             let expenseRef = expensesRef.push();
             let expenseKey = expenseRef.key;
+            let today = new Date();
+            let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
             let data = {
                 amount: amount,
                 description: description,
                 expenseType: expenseType,
+                date: date,
                 id: expenseKey
             };
             if (snap.val() === null) {
-                result["totalExpense/" + userId] = amount;
+                result["totalExpense/" + userId + "/totalexpense"] = amount;
                 result["expense/" + userId + "/" + expenseKey] = data;
 
                 ref.update(result);
                 return res.redirect('/dashboard');
-            }
-            let totalExpense = Number(snap.val()) + Number(amount);
-            result["totalExpense/" + userId] = totalExpense;
-            result["expense/" + userId + "/" + expenseKey] = data;
+            } else {
+                let totalExpense = Number(snap.val()) + Number(amount);
+                result["totalExpense/" + userId + "/totalexpense"] = totalExpense;
+                result["expense/" + userId + "/" + expenseKey] = data;
 
-            ref.update(result);
-            res.redirect('/dashboard');
+                ref.update(result);
+                res.redirect('/dashboard');
+            }
+
         }, (err) => {
             var errorCode = err.code;
             var errorMessage = err.message;
@@ -54,7 +59,7 @@ module.exports.displayExpense = (req, res) => {
         }, (err) => {
             var errorCode = err.code;
             var errorMessage = err.message;
-            console.log(err);
+
             res.redirect('/dashboard');
         });
 
