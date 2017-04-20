@@ -9,24 +9,30 @@
       <link type="text/css" rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css"  media="screen,projection"/>
       <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.min.css">
       <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-     
+      
+      
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+      <script src="js/app.js"></script>
+            
+      </script>
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <% include partials/nav %>
+
 <div class = "container">
     <div class = "row">
         <div class= "col-lg-4">
             <div class = "well">
-                <h4 class="card-title">Income</h4>
+                <h4 class="card-title"><a href="/income">Income</a></h4>
                 <p class="card-text">Some quick example text</p>
                 <button type="button" data-target="#myModal" data-toggle ="modal" class="btn btn-primary">Tap to add income</button>
             </div>
         </div>
         <div class= "col-md-4">
             <div class = "well">
-                <h4 class="card-title">Expenses</h4>
+                <h4 class="card-title"><a href="/expense">Expenses</a></h4>
                 <p class="card-text">Some quick example text</p>
                 <button type="button" data-target="#expensesModal" data-toggle ="modal" class="btn btn-primary">Tap to input expenses</button>
             </div>
@@ -48,7 +54,7 @@
                     <h4 class="modal-title">Income</h4>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method = "post" action = "/income">
                         <div class= "form-group">
                             <label for="incomeAmount">Amount</label>
                             <input type= "currency"class="form-control" name="amount" placeholder="Enter Income Amount" required autofocus>
@@ -57,7 +63,7 @@
                             <label for="description">description</label>
                             <input type= "text"class="form-control" name= "description"placeholder="Enter Income Amount" required autofocus>
                         </div>
-                        <select class="form-control" id="incomes" name="incomes">
+                        <select class="form-control" id="incometype" name="incometype">
                             <option>Award</option>
                             <option>Gift</option>
                             <option>Investment</option>
@@ -65,7 +71,7 @@
                             <option>Others</option>
                         </select>
                         <br>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary" id= "saveIncome">Save</button>
                     </form>
                 </div>
             </div>
@@ -80,7 +86,7 @@
                     <h4 class="modal-title">Expenses</h4>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method = "post" action = "/expense">
                         <div class= "form-group">
                             <label for="expenseAmount">Amount</label>
                             <input type= "currency"class="form-control" name="expenseamount" placeholder="Enter Expense Amount" required autofocus>
@@ -89,7 +95,7 @@
                             <label for="description">Description</label>
                             <input type= "text"class="form-control" name= "expensedescription"placeholder="Enter Expense Description" required autofocus>
                         </div>
-                        <select class="form-control" id="expenses" name="expenses">
+                        <select class="form-control" id="expenses" name="expensetype">
                             <option>Clothing</option>
                             <option>Education</option>
                             <option>Entertainment</option>
@@ -100,7 +106,7 @@
                             <option>Transportation</option>
                         </select>
                         <br>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary" id="saveExpense">Save</button>
                     </form>
                 </div>
             </div>
@@ -115,16 +121,34 @@
                     <h4 class="modal-title">Budget</h4>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method = "post" action = "/budget">
                         <div class= "form-group">
                             <label for="budgetAmount">Amount</label>
                             <input type= "currency"class="form-control" name="budgetamount" placeholder="Enter Expense Amount" required autofocus>
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary" id = "saveBudget">Save</button>
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class = "row">
+        <div class = "col-lg-6">
+            <div id="chart" style="width: 500px; height:300px;"></div>
+        </div>
+        <div class = "col-lg-6">
+            <div id="expensechart" style="width: 500px; height:300px;"></div>
+        </div>
+    </div>
+        <br>
+        <br>
+    <div class = "row">
+        <div class = "col-lg-6">
+            <div id="barchartIncome" style="width: 500px; height:300px;"></div>
+        </div>
+        <div class = "col-lg-6">
+            <div id="barchartExpense" style="width: 500px; height:300px;"></div>
         </div>
     </div>
 </div>

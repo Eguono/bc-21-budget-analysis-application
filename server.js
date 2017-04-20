@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const dotenv = require('dotenv').config();
 const expressValidator = require("express-validator");
+const fs = require('fs');
 
 const webRoutes = require("./routes/routes.js");
 
