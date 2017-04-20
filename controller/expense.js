@@ -44,3 +44,20 @@ module.exports.addExpense = (req, res) => {
     }
 
 }
+
+module.exports.displayExpense = (req, res) => {
+    let user = auth.currentUser;
+    if (user) {
+        let userId = user.uid;
+        ref.child("expense/" + userId).on("value", (snap) => {
+            res.render("expense", { data: snap.val() })
+        }, (err) => {
+            var errorCode = err.code;
+            var errorMessage = err.message;
+            console.log(err);
+            res.redirect('/dashboard');
+        });
+
+    }
+
+}

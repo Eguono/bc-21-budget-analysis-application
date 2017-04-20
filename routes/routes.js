@@ -31,14 +31,10 @@ module.exports = (app, route) => {
         }).post(budget.postBudget);
 
     app.route("/expense")
-        .get((req, res) => {
-            res.send("expense");
-        }).post(expense.addExpense);
+        .get(expense.displayExpense).post(expense.addExpense);
 
     app.route("/income")
-        .get((req, res) => {
-            res.send("income");
-        }).post(income.addIncome);
+        .get(income.displayIncome).post(income.addIncome);
 
     app.route("/signOut")
         .get(auth.signOut);
