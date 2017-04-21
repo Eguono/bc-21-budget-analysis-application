@@ -20,10 +20,19 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <% include partials/nav %>
+<% if(error) { %>
+            <div class = "alert alert-danger alert-dismissable">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <%= error %>
+            </div>
+          <% } %>
 
 <div class = "container">
 <div><p>Welcome <%= user.firstName%></p></div>
 <div><p>Balance: <%= balance%></p></div>
+
+
+
     <div class = "row">
         <div class= "col-lg-4">
             <div class = "well">
@@ -42,7 +51,15 @@
         <div class= "col-md-4">
             <div class = "well">
                 <h4 class="card-title">Budget</h4>
-                <p class="card-text">Some quick example text</p>
+                <p class="card-text"><%= budget%></p>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar"
+                        aria-valuenow="<%= percent%>" aria-valuemin="0" aria-valuemax="100" style="width:<%= percent%>%">
+                            <%= percent%>%
+                    </div>
+                </div>
+                <%= budgetbalance%>
+                <br>
                 <button type="button" data-target="#budgetModal" data-toggle ="modal" class="btn btn-primary">Tap to set budgets</button>
             </div>
         </div>

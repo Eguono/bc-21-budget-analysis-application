@@ -68,3 +68,14 @@ module.exports.displayExpense = (req, res) => {
     }
 
 }
+
+module.exports.deleteExpense = (req, res) => {
+    let user = auth.currentUser;
+    let userId = user.uid;
+    let id = req.query.id;
+
+    let incomeRefs = ref.child("expense/" + userId + "/" + id)
+    incomeRefs.set(null);
+    res.redirect('/expense');
+
+}

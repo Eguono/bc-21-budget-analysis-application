@@ -33,8 +33,14 @@ module.exports = (app, route) => {
     app.route("/expense")
         .get(expense.displayExpense).post(expense.addExpense);
 
+    app.route("/deleteExpense")
+    .get(expense.deleteExpense);
+
     app.route("/income")
         .get(income.displayIncome).post(income.addIncome);
+
+    app.route("/deleteIncome")
+    .get(income.deleteIncome);
 
     app.route("/signOut")
         .get(auth.signOut);
