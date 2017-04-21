@@ -59,12 +59,14 @@
                     <form method = "post" action = "/income">
                         <div class= "form-group">
                             <label for="incomeAmount">Amount</label>
-                            <input type= "currency"class="form-control" name="amount" placeholder="Enter Income Amount" required autofocus>
+                            <input type= "number"class="form-control" name="amount" placeholder="Enter Income Amount" required autofocus>
                         </div>
                         <div class= "form-group">
-                            <label for="description">description</label>
-                            <input type= "text"class="form-control" name= "description"placeholder="Enter Income Amount" required autofocus>
+                            <label for="description">Description</label>
+                            <input type= "text"class="form-control" name= "description"placeholder="Enter Income Description" required autofocus>
                         </div>
+                        <div class= "form-group">
+                        <label for="Incometype">Income Type</label>
                         <select class="form-control" id="incometype" name="incometype">
                             <option>Award</option>
                             <option>Gift</option>
@@ -72,6 +74,7 @@
                             <option>Salary</option>
                             <option>Others</option>
                         </select>
+                        </div>
                         <br>
                         <button type="submit" class="btn btn-primary" id= "saveIncome">Save</button>
                     </form>
@@ -91,12 +94,14 @@
                     <form method = "post" action = "/expense">
                         <div class= "form-group">
                             <label for="expenseAmount">Amount</label>
-                            <input type= "currency"class="form-control" name="expenseamount" placeholder="Enter Expense Amount" required autofocus>
+                            <input type= "number"class="form-control" name="expenseamount" placeholder="Enter Expense Amount" required autofocus>
                         </div>
                         <div class= "form-group">
                             <label for="description">Description</label>
                             <input type= "text"class="form-control" name= "expensedescription"placeholder="Enter Expense Description" required autofocus>
                         </div>
+                        <div class= "form-group">
+                        <label for="Expensetype">Expense Type</label>
                         <select class="form-control" id="expenses" name="expensetype">
                             <option>Clothing</option>
                             <option>Education</option>
@@ -107,6 +112,7 @@
                             <option>Payments</option>
                             <option>Transportation</option>
                         </select>
+                        </div>
                         <br>
                         <button type="submit" class="btn btn-primary" id="saveExpense">Save</button>
                     </form>
@@ -126,7 +132,7 @@
                     <form method = "post" action = "/budget">
                         <div class= "form-group">
                             <label for="budgetAmount">Amount</label>
-                            <input type= "currency"class="form-control" name="budgetamount" placeholder="Enter Expense Amount" required autofocus>
+                            <input type= "number"class="form-control" name="budgetamount" placeholder="Enter Budget Amount" required autofocus>
                         </div>
                         <br>
                         <button type="submit" class="btn btn-primary" id = "saveBudget">Save</button>
