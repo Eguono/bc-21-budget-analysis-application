@@ -1,179 +1,262 @@
 <head>
-      <title>Budget Analysis Application | Dashboard</title>
-      
+    <title>E Budget | Dashboard</title>
 
-      <link rel="shortcut icon" type="image/jpeg" href="img/budget.jpg" sizes="16x16 32x32 64x64">
-      <link rel="apple-touch-icon" sizes="120x120" href="img/budget.jpg">
-      <script src="lib/jquery/dist/jquery.min.js"></script>   
 
-      <link type="text/css" rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css"  media="screen,projection"/>
-      <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.min.css">
-      <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-      
-      
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="shortcut icon" type="image/jpeg" href="img/budget.jpg" sizes="16x16 32x32 64x64">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/budget.jpg">
+    <script src="lib/jquery/dist/jquery.min.js"></script>
 
-      <script src="js/app.js"></script>
-            
-      </script>
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--<link type="text/css" rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css"  media="screen,projection"/>
+      <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.min.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>-->
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+    </script>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
-<% include partials/nav %>
-<% if(error) { %>
-            <div class = "alert alert-danger alert-dismissable">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <%= error %>
+
+<body>
+    <% include partials/navbar %>
+        <% if(error) { %>
+            <div class="alert alert-danger alert-dismissable">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <%= error %>
             </div>
-          <% } %>
+            <% } %>
 
-<div class = "container">
-<div><p>Welcome <%= user.firstName%></p></div>
-<div><p>Balance: <%= balance%></p></div>
-
-
-
-    <div class = "row">
-        <div class= "col-lg-4">
-            <div class = "well">
-                <h4 class="card-title"><a href="/income">Income</a></h4>
-                <p class="card-text"><%= income%></p>
-                <button type="button" data-target="#myModal" data-toggle ="modal" class="btn btn-primary">Tap to add income</button>
-            </div>
-        </div>
-        <div class= "col-md-4">
-            <div class = "well">
-                <h4 class="card-title"><a href="/expense">Expenses</a></h4>
-                <p class="card-text"><%= expense%></p>
-                <button type="button" data-target="#expensesModal" data-toggle ="modal" class="btn btn-primary">Tap to input expenses</button>
-            </div>
-        </div>
-        <div class= "col-md-4">
-            <div class = "well">
-                <h4 class="card-title">Budget</h4>
-                <p class="card-text"><%= budget%></p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped active" role="progressbar"
-                        aria-valuenow="<%= percent%>" aria-valuemin="0" aria-valuemax="100" style="width:<%= percent%>%">
-                            <%= percent%>%
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Hi, <%= user.firstName%></span>
+                        <p>Your Current Balance is
+                            <%= balance%>
+                        </p>
                     </div>
                 </div>
-                <%= budgetbalance%>
-                <br>
-                <button type="button" data-target="#budgetModal" data-toggle ="modal" class="btn btn-primary">Tap to set budgets</button>
-            </div>
-        </div>
-    </div>
-    <!--Income Modal-->
-    <div id = "myModal" class="modal fade"  role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Income</h4>
+
+                <div class="container">
+
+
+                    <div class="row">
+                        <div class="col s4">
+                            <ul class="collapsible" data-collapsible="accordion">
+                                <li>
+                                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>Income</div>
+                                    <div class="collapsible-body">
+                                        <div class="card">
+                                            <div class="card-image waves-effect waves-block waves-light">
+                                                <img class="activator" src="img/income.jpg">
+                                            </div>
+                                            <div class="card-content">
+                                                <span class="card-title activator grey-text text-darken-4">Current Income Total is <%= income%><i class="material-icons right">more_vert</i></span>
+                                                <p><a href="/income">View your income list</a></p>
+                                                <button data-target="myModal" class="btn">Tap to add income</button>
+                                            </div>
+                                            <div class="card-reveal">
+                                                <span class="card-title grey-text text-darken-4">Income<i class="material-icons right">close</i></span>
+                                                <p>Save more money, set a budget limit</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col s4">
+                            <ul class="collapsible" data-collapsible="accordion">
+                                <li>
+                                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>Expense</div>
+                                    <div class="collapsible-body">
+                                        <div class="card">
+                                            <div class="card-image waves-effect waves-block waves-light">
+                                                <img class="activator" src="img/expense.jpg">
+                                            </div>
+                                            <div class="card-content">
+                                                <span class="card-title activator grey-text text-darken-4">Current Expense Total is <%= expense%><i class="material-icons right">more_vert</i></span>
+                                                <p><a href="/expense">View your expense list</a></p>
+                                                <button data-target="expenseModal" class="btn">Tap to input expense</button>
+                                            </div>
+                                            <div class="card-reveal">
+                                                <span class="card-title grey-text text-darken-4">Income<i class="material-icons right">close</i></span>
+                                                <p>Manage your expense for better results, set a budget limit</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col s4">
+                            <ul class="collapsible" data-collapsible="accordion">
+                                <li>
+                                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>Budget</div>
+                                    <div class="collapsible-body">
+                                        <div class="card">
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="<%= percent%>" aria-valuemin="0"
+                                                    aria-valuemax="100" style="width:<%= percent%>%">
+                                                    <%= percent%>%
+                                                </div>
+                                            </div>
+                                            <div class="card-content">
+                                                <span class="card-title activator grey-text text-darken-4">Your budget limit is <%= budget%><i class="material-icons right">more_vert</i></span>
+                                                <button data-target="budgetModal" class="btn">Tap to set budget limit</button>
+                                            </div>
+                                            <div class="card-reveal">
+                                                <span class="card-title grey-text text-darken-4">Budget<i class="material-icons right">close</i></span>
+                                                <p>Your Current Budget Balance is
+                                                    <%= balance%>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="myModal" class="modal">
+                        <button class="modal-close" data-dismiss="modal">&times;</button>
+                        <div class="modal-content">
+                            <h4>Income</h4>
+
+                            <div class="row">
+                                <form class="col s12" method="post" action="/income">
+                                    <div class="row modal-form-row">
+                                        <div class="input-field col s12">
+                                            <input id="incomeAmount" type="text" name="amount" class="validate">
+                                            <label for="incomeamount">Amount</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea id="incomeDescription" type="text" class="materialize-textarea validate" name="description"></textarea>
+                                            <label for="incomeDescription">Description</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 m6">
+                                            <select id="incometype" name="incometype">
+                                            <option  >Award</option>
+                                            <option  >Gift</option>
+                                            <option  >Investment</option>
+                                            <option >Salary</option>
+                                            <option >Others</option>
+                                        </select>
+                                            <label>Income Type</label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
+                                        <button type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Dismiss</button>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="expenseModal" class="modal">
+                        <button class="modal-close" data-dismiss="modal">&times;</button>
+                        <div class="modal-content">
+                            <h4>Expense</h4>
+
+                            <div class="row">
+                                <form class="col s12" method="post" action="/expense">
+                                    <div class="row modal-form-row">
+                                        <div class="input-field col s12">
+                                            <input id="expenseAmount" type="number" name="expenseamount" class="validate">
+                                            <label for="expenseamount">Amount</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea id="expenseDescription" type="text" class="materialize-textarea validate" name="expensedescription"></textarea>
+                                            <label for="expenseDescription">Description</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 m6">
+                                            <select id="expensetype" name="expensetype">
+                                            <option>Clothing</option>
+                                            <option>Education</option>
+                                            <option>Entertainment</option>
+                                            <option>Food and Drink</option>
+                                            <option>Health</option>
+                                            <option>Home</option>
+                                            <option>Payments</option>
+                                            <option>Transportation</option>
+                                        </select>
+                                            <label>Expense Type</label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
+                                        <button type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Dismiss</button>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div id="budgetModal" class="modal">
+                        <button class="modal-close" data-dismiss="modal">&times;</button>
+                        <div class="modal-content">
+                            <h4>Budget</h4>
+
+                            <div class="row">
+                                <form class="col s12" method="post" action="/budget">
+                                    <div class="row modal-form-row">
+                                        <div class="input-field col s12">
+                                            <input id="budgetAmount" type="number" name="budgetamount" class="validate">
+                                            <label for="budgetamount">Amount</label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
+                                        <button type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Dismiss</button>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col l6">
+                            <div id="chart" style="width: 500px; height:300px;"></div>
+                        </div>
+                        <div class="col l6">
+                            <div id="expensechart" style="width: 500px; height:300px;" class= "right"></div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col l6 ">
+                            <div id="barchartIncome" style="width: 500px; height:300px;"></div>
+                        </div>
+                        <div class="col l6">
+                            <div id="barchartExpense" style="width: 500px; height:300px;" class= "right"></div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="modal-body">
-                    <form method = "post" action = "/income">
-                        <div class= "form-group">
-                            <label for="incomeAmount">Amount</label>
-                            <input type= "number"class="form-control" name="amount" placeholder="Enter Income Amount" required autofocus>
-                        </div>
-                        <div class= "form-group">
-                            <label for="description">Description</label>
-                            <input type= "text"class="form-control" name= "description"placeholder="Enter Income Description" required autofocus>
-                        </div>
-                        <div class= "form-group">
-                        <label for="Incometype">Income Type</label>
-                        <select class="form-control" id="incometype" name="incometype">
-                            <option>Award</option>
-                            <option>Gift</option>
-                            <option>Investment</option>
-                            <option>Salary</option>
-                            <option>Others</option>
-                        </select>
-                        </div>
-                        <br>
-                        <button type="submit" class="btn btn-primary" id= "saveIncome">Save</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Expenses Modal-->
-    <div id = "expensesModal" class="modal fade"  role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Expenses</h4>
-                </div>
-                <div class="modal-body">
-                    <form method = "post" action = "/expense">
-                        <div class= "form-group">
-                            <label for="expenseAmount">Amount</label>
-                            <input type= "number"class="form-control" name="expenseamount" placeholder="Enter Expense Amount" required autofocus>
-                        </div>
-                        <div class= "form-group">
-                            <label for="description">Description</label>
-                            <input type= "text"class="form-control" name= "expensedescription"placeholder="Enter Expense Description" required autofocus>
-                        </div>
-                        <div class= "form-group">
-                        <label for="Expensetype">Expense Type</label>
-                        <select class="form-control" id="expenses" name="expensetype">
-                            <option>Clothing</option>
-                            <option>Education</option>
-                            <option>Entertainment</option>
-                            <option>Food and Drink</option>
-                            <option>Health</option>
-                            <option>Home</option>
-                            <option>Payments</option>
-                            <option>Transportation</option>
-                        </select>
-                        </div>
-                        <br>
-                        <button type="submit" class="btn btn-primary" id="saveExpense">Save</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Budget Modal-->
-    <div id = "budgetModal" class="modal fade"  role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Budget</h4>
-                </div>
-                <div class="modal-body">
-                    <form method = "post" action = "/budget">
-                        <div class= "form-group">
-                            <label for="budgetAmount">Amount</label>
-                            <input type= "number"class="form-control" name="budgetamount" placeholder="Enter Budget Amount" required autofocus>
-                        </div>
-                        <br>
-                        <button type="submit" class="btn btn-primary" id = "saveBudget">Save</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class = "row">
-        <div class = "col-lg-6">
-            <div id="chart" style="width: 500px; height:300px;"></div>
-        </div>
-        <div class = "col-lg-6">
-            <div id="expensechart" style="width: 500px; height:300px;"></div>
-        </div>
-    </div>
-        <br>
-        <br>
-    <div class = "row">
-        <div class = "col-lg-6">
-            <div id="barchartIncome" style="width: 500px; height:300px;"></div>
-        </div>
-        <div class = "col-lg-6">
-            <div id="barchartExpense" style="width: 500px; height:300px;"></div>
-        </div>
-    </div>
-</div>
+                <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                    crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+
+                <script src="js/app.js"></script>
+</body>
