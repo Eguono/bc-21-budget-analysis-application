@@ -54,7 +54,7 @@ module.exports.displayExpense = (req, res) => {
     let user = auth.currentUser;
     if (user) {
         let userId = user.uid;
-        ref.child("expense/" + userId).on("value", (snap) => {
+        ref.child("expense/" + userId).once("value", (snap) => {
             res.render("expense", { data: snap.val() })
         }, (err) => {
             var errorCode = err.code;

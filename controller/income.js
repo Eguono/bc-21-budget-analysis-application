@@ -68,7 +68,7 @@ module.exports.displayIncome = (req, res) => {
     let user = auth.currentUser;
     if (user) {
         let userId = user.uid;
-        ref.child("income/" + userId).on("value", (snap) => {
+        ref.child("income/" + userId).once("value", (snap) => {
             res.render("income", { data: snap.val() })
         }, (err) => {
             var errorCode = err.code;
