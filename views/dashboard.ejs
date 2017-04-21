@@ -22,18 +22,20 @@
 <% include partials/nav %>
 
 <div class = "container">
+<div><p>Welcome <%= user.firstName%></p></div>
+<div><p>Balance: <%= balance%></p></div>
     <div class = "row">
         <div class= "col-lg-4">
             <div class = "well">
                 <h4 class="card-title"><a href="/income">Income</a></h4>
-                <p class="card-text">Some quick example text</p>
+                <p class="card-text"><%= income%></p>
                 <button type="button" data-target="#myModal" data-toggle ="modal" class="btn btn-primary">Tap to add income</button>
             </div>
         </div>
         <div class= "col-md-4">
             <div class = "well">
                 <h4 class="card-title"><a href="/expense">Expenses</a></h4>
-                <p class="card-text">Some quick example text</p>
+                <p class="card-text"><%= expense%></p>
                 <button type="button" data-target="#expensesModal" data-toggle ="modal" class="btn btn-primary">Tap to input expenses</button>
             </div>
         </div>

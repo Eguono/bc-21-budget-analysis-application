@@ -63,6 +63,8 @@ module.exports.displayExpense = (req, res) => {
             res.redirect('/dashboard');
         });
 
+    } else {
+        res.render("login", { error: "Please Login To Use the Web App" });
     }
 
 }
