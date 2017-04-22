@@ -30,17 +30,18 @@
             </div>
             <% } %>
 
-                <% if(budget > 100 ) { %>
+
+                <% if(budget > 80 ) { %>
                     <script>
                         window.onload = function () {
 
-                            Materialize.toast('Your have reached 80% of Budget Limit', 4000)
+                            Materialize.toast('Your have exceeded 80% of Budget Limit', 4000)
                         };
                     </script>
 
 
                     <% } %>
-                        <% if(budget > 80 ) { %>
+                        <% if(budget > 100 ) { %>
                             <script>
                                 window.onload = function () {
 
@@ -50,6 +51,7 @@
 
 
                             <% } %>
+
 
                                 <div class="card blue-grey darken-1">
                                     <div class="card-content white-text">
