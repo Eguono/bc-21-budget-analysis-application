@@ -33,7 +33,7 @@ module.exports.dashboard = (req, res) => {
                                         percent = Math.floor(result[0] / result[2] * 100);
                                     }
                                     if (budgetBalance < 0) {
-                                        budgetBalnce = -budgetBalance;
+                                        budgetBalance = -budgetBalance;
 
                                     }
 
