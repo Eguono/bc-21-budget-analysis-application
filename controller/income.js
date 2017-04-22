@@ -8,61 +8,51 @@ module.exports.addIncome = (req, res) => {
     let description = req.body.description;
     let incomeType = req.body.incometype;
 
-    req.checkBody('amount', 'Amount is not valid').notEmpty().isInt();
-    req.checkBody('description', 'Description is not valid').notEmpty().isAlpha();
 
-    let errors = req.validationErrors();
+    let user = auth.currentUser;
+    let userId = user.uid;
 
-    if (errors) {
-        console.log(errors)
-        let errormsg = errors[0].msg;
-        res.redirect("/dashboard")
-        // return res.render('dashboard', { error: errormsg });
-    } else {
-        let user = auth.currentUser;
-        let userId = user.uid;
+    ref.child("totalIncome/" + userId + "/totalincome").once("value", (snap) => {
+        let result = {};
+        let incomesRef = ref.child('totalIncome/' + userId);
+        let incomeRef = incomesRef.push();
+        let incomeKey = incomeRef.key;
+        let today = new Date();
+        let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        let data = {
+            amount: amount,
+            description: description,
+            incomeType: incomeType,
+            date: date,
+            id: incomeKey
+        };
 
-        ref.child("totalIncome/" + userId + "/totalincome").once("value", (snap) => {
-            let result = {};
-            let incomesRef = ref.child('totalIncome/' + userId);
-            let incomeRef = incomesRef.push();
-            let incomeKey = incomeRef.key;
-            let today = new Date();
-            let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-            let data = {
-                amount: amount,
-                description: description,
-                incomeType: incomeType,
-                date: date,
-                id: incomeKey
-            };
+        if (snap.val() === null) {
+            result["totalIncome/" + userId + "/totalincome"] = amount;
+            result["income/" + userId + "/" + incomeKey] = data;
 
-            if (snap.val() === null) {
-                result["totalIncome/" + userId + "/totalincome"] = amount;
-                result["income/" + userId + "/" + incomeKey] = data;
+            ref.update(result);
+            return res.redirect('/dashboard');
+        } else {
+            let totalIncome = Number(snap.val()) + Number(amount);
 
-                ref.update(result);
-                return res.redirect('/dashboard');
-            } else {
-                let totalIncome = Number(snap.val()) + Number(amount);
+            result["totalIncome/" + userId + "/totalincome"] = totalIncome;
+            result["income/" + userId + "/" + incomeKey] = data;
 
-                result["totalIncome/" + userId + "/totalincome"] = totalIncome;
-                result["income/" + userId + "/" + incomeKey] = data;
-
-                ref.update(result);
-                res.redirect('/dashboard');
-            }
-
-        }, (err) => {
-            var errorCode = err.code;
-            var errorMessage = err.message;
-            console.log(err);
+            ref.update(result);
             res.redirect('/dashboard');
-        });
-    }
+        }
 
-
+    }, (err) => {
+        var errorCode = err.code;
+        var errorMessage = err.message;
+        console.log(err);
+        res.redirect('/dashboard');
+    });
 }
+
+
+
 
 module.exports.displayIncome = (req, res) => {
     let user = auth.currentUser;
@@ -87,9 +77,19 @@ module.exports.deleteIncome = (req, res) => {
     let user = auth.currentUser;
     let userId = user.uid;
     let id = req.query.id;
+    let amount = req.query.amount;
 
     let incomeRefs = ref.child("income/" + userId + "/" + id)
     incomeRefs.set(null);
-    res.redirect('/income');
+    ref.child("totalIncome/" + userId + "/totalincome").once("value", (snap) => {
+        let newTotal = snap.val() - amount;
+        ref.child("totalIncome/" + userId).update({ totalincome: newTotal });
+        res.redirect('/income');
+    }, (err) => {
+        var errorCode = err.code;
+        var errorMessage = err.message;
+        console.log(err);
+        res.redirect('/dashboard');
+    });
 
 }

@@ -73,9 +73,20 @@ module.exports.deleteExpense = (req, res) => {
     let user = auth.currentUser;
     let userId = user.uid;
     let id = req.query.id;
+    let amount = req.query.amount;
 
     let incomeRefs = ref.child("expense/" + userId + "/" + id)
     incomeRefs.set(null);
-    res.redirect('/expense');
+    ref.child("totalExpense/" + userId + "/totalexpense").once("value", (snap) => { 
+        let newTotal = snap.val()-amount;
+        ref.child("totalExpense/" + userId ).update({totalexpense: newTotal});
+        res.redirect('/expense');
+    }, (err) => {
+        var errorCode = err.code;
+        var errorMessage = err.message;
+        console.log(err);
+        res.redirect('/dashboard');
+    });
+
 
 }
