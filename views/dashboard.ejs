@@ -30,173 +30,196 @@
             </div>
             <% } %>
 
-                <% if(balance > 80 ) { %>
+                <% if(budget > 100 ) { %>
                     <script>
                         window.onload = function () {
 
                             Materialize.toast('Your have reached 80% of Budget Limit', 4000)
-                        }; 
+                        };
                     </script>
 
 
                     <% } %>
+                        <% if(budget > 80 ) { %>
+                            <script>
+                                window.onload = function () {
 
-                        <div class="card blue-grey darken-1">
-                            <div class="card-content white-text">
-                                <span class="card-title">Hi, <%= user.firstName%></span>
-                                <p>Your Current Balance is
-                                    <%= balance%>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="container">
+                                    Materialize.toast('Your have exceeded your Budget Limit', 4000)
+                                };
+                            </script>
 
 
-                            <div class="row">
-                                <div class="col s4">
-                                    <ul class="collapsible" data-collapsible="accordion">
-                                        <li>
-                                            <div class="collapsible-header"><i class="material-icons">account_balance</i>Income</div>
-                                            <div class="collapsible-body">
-                                                <div class="card">
+                            <% } %>
 
-                                                    <div class="card-content">
-                                                        <span class="activator grey-text text-darken-4">Current Income Total: <%= income%><i class="material-icons right">more_vert</i></span>
-                                                        <p><a href="/income">View your income list</a></p>
-                                                        <button data-target="myModal" class="btn">Add income</button>
-                                                    </div>
-                                                    <div class="card-reveal">
-                                                        <span class="grey-text text-darken-4">Income<i class="material-icons right">close</i></span>
-                                                        <br>
-                                                        <p>Save more money, set a budget limit</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col s4">
-                                    <ul class="collapsible" data-collapsible="accordion">
-                                        <li>
-                                            <div class="collapsible-header"><i class="material-icons">account_balance_wallet</i>Expense</div>
-                                            <div class="collapsible-body">
-                                                <div class="card">
-
-                                                    <div class="card-content">
-                                                        <span class="activator grey-text text-darken-4">Current Expense Total: <%= expense%><i class="material-icons right">more_vert</i></span>
-                                                        <br>
-                                                        <p><a href="/expense">View your expense list</a></p>
-
-                                                        <button data-target="expenseModal" class="btn">Add expense</button>
-                                                    </div>
-                                                    <div class="card-reveal">
-                                                        <span class="card-title grey-text text-darken-4">Income<i class="material-icons right">close</i></span>
-                                                        <p>Manage your expense for better results, set a budget limit</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                <div class="card blue-grey darken-1">
+                                    <div class="card-content white-text">
+                                        <span class="card-title">Hi, <%= user.firstName%></span>
+                                        <p>Your Current Balance is
+                                            <%= balance%>
+                                        </p>
+                                    </div>
                                 </div>
 
-                                <div class="col s4">
-                                    <ul class="collapsible" data-collapsible="accordion">
-                                        <li>
-                                            <div class="collapsible-header"><i class="material-icons">markunread_mailbox</i> Budget
-                                                <%= percent%>%
-                                                    <div class="progress">
-                                                        <div class="determinate " style="width:<%= percent%>%"></div>
-                                                    </div>
-                                            </div>
-                                            <div class="collapsible-body">
-                                                <div class="card">
+                                <div class="container">
 
-
-                                                    <div class="card-content">
-                                                        <span class="activator grey-text text-darken-4">Budget limit: <%= budget%><i class="material-icons right">more_vert</i></span>
-                                                        <br>
-                                                        <p>You have
-                                                            <%= balance%> till budget limit
-                                                        </p>
-                                                        <button data-target="budgetModal" class="btn">Set budget limit</button>
-                                                    </div>
-                                                    <div class="card-reveal">
-                                                        <span class="card-title grey-text text-darken-4">Budget<i class="material-icons right">close</i></span>
-                                                        <p>Your have
-                                                            <%= balance%> till budget limit is reach
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div id="myModal" class="modal" style="max-width:400px;">
-                                <div class="modal-content">
-                                    <h4>Income</h4>
 
                                     <div class="row">
-                                        <form class="col s12" method="post" action="/income">
-                                            <div class="row modal-form-row">
-                                                <div class="input-field col s12">
-                                                    <input id="incomeAmount" type="text" name="amount" class="validate">
-                                                    <label for="incomeamount">Amount</label>
-                                                </div>
-                                            </div>
+                                        <div class="col s4">
+                                            <ul class="collapsible" data-collapsible="accordion">
+                                                <li>
+                                                    <div class="collapsible-header"><i class="material-icons">account_balance</i>Income</div>
+                                                    <div class="collapsible-body">
+                                                        <div class="card">
+
+                                                            <div class="card-content">
+                                                                <span class="activator grey-text text-darken-4">Current Income Total: <%= income%><i class="material-icons right">more_vert</i></span>
+                                                                <p><a href="/income">View your income list</a></p>
+                                                                <button data-target="myModal" class="btn">Add income</button>
+                                                            </div>
+                                                            <div class="card-reveal">
+                                                                <span class="card-title grey-text text-darken-4">Income<i class="material-icons right">close</i></span>
+                                                                <br>
+                                                                <p>Save more money, set a budget limit</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col s4">
+                                            <ul class="collapsible" data-collapsible="accordion">
+                                                <li>
+                                                    <div class="collapsible-header"><i class="material-icons">account_balance_wallet</i>Expense</div>
+                                                    <div class="collapsible-body">
+                                                        <div class="card">
+
+                                                            <div class="card-content">
+                                                                <span class="activator grey-text text-darken-4">Current Expense Total: <%= expense%><i class="material-icons right">more_vert</i></span>
+                                                                <br>
+                                                                <p><a href="/expense">View your expense list</a></p>
+
+                                                                <button data-target="expenseModal" class="btn">Add expense</button>
+                                                            </div>
+                                                            <div class="card-reveal">
+                                                                <span class="card-title grey-text text-darken-4">Income<i class="material-icons right">close</i></span>
+                                                                <p>Manage your expense for better results, set a budget limit</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="col s4">
+                                            <ul class="collapsible" data-collapsible="accordion">
+                                                <li>
+                                                    <div class="collapsible-header"><i class="material-icons">markunread_mailbox</i> Budget
+                                                        <%= percent%>%
+                                                            <div class="progress">
+                                                                <div class="determinate " style="width:<%= percent%>%"></div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="collapsible-body">
+                                                        <div class="card">
+
+
+                                                            <div class="card-content">
+                                                                <span class="activator grey-text text-darken-4">Budget limit: <%= budget%><i class="material-icons right">more_vert</i></span>
+                                                                <br>
+                                                                <%  if(percent > 100) { %>
+                                                                    <p>You have exceeded your budget by
+                                                                        <%= balance%>
+                                                                    </p>
+                                                                    <%}else{%>
+                                                                        <p>You have
+                                                                            <%= balance%> till budget limit
+                                                                        </p>
+                                                                        <%}%>
+
+                                                                            <button data-target="budgetModal" class="btn">Set budget limit</button>
+                                                            </div>
+                                                            <div class="card-reveal">
+                                                                <span class="card-title grey-text text-darken-4">Budget<i class="material-icons right">close</i></span>
+                                                                <%  if(percent > 100) { %>
+                                                                    <p>You have exceeded your budget by
+                                                                        <%= balance%>
+                                                                    </p>
+                                                                    <%}else{%>
+                                                                        <p>You have
+                                                                            <%= balance%> till budget limit
+                                                                        </p>
+                                                                        <%}%>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div id="myModal" class="modal" style="max-width:400px;">
+                                        <div class="modal-content">
+                                            <h4>Income</h4>
 
                                             <div class="row">
-                                                <div class="input-field col s12">
-                                                    <textarea id="incomeDescription" type="text" class="materialize-textarea validate" name="description"></textarea>
-                                                    <label for="incomeDescription">Description</label>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="input-field col s12 m6">
-                                                    <select id="incometype" name="incometype">
+                                                <form class="col s12" method="post" action="/income">
+                                                    <div class="row modal-form-row">
+                                                        <div class="input-field col s12">
+                                                            <input id="incomeAmount" type="text" name="amount" class="validate">
+                                                            <label for="incomeamount">Amount</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="input-field col s12">
+                                                            <textarea id="incomeDescription" type="text" class="materialize-textarea validate" name="description"></textarea>
+                                                            <label for="incomeDescription">Description</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="input-field col s12 m6">
+                                                            <select id="incometype" name="incometype">
                                             <option  >Award</option>
                                             <option  >Gift</option>
                                             <option  >Investment</option>
                                             <option  >Salary</option>
                                             <option  >Others</option>
                                         </select>
-                                                    <label>Income Type</label>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
-                                                <button type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Dismiss</button>
+                                                            <label>Income Type</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
+                                                        <button type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Dismiss</button>
 
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </form>
+                                        </div>
+
                                     </div>
-                                </div>
 
-                            </div>
-
-                            <div id="expenseModal" class="modal" style="max-width:400px;">
-                                <div class="modal-content">
-                                    <h4>Expense</h4>
-
-                                    <div class="row">
-                                        <form class="col s12" method="post" action="/expense">
-                                            <div class="row modal-form-row">
-                                                <div class="input-field col s12">
-                                                    <input id="expenseAmount" type="number" name="expenseamount" class="validate">
-                                                    <label for="expenseamount">Amount</label>
-                                                </div>
-                                            </div>
+                                    <div id="expenseModal" class="modal" style="max-width:400px;">
+                                        <div class="modal-content">
+                                            <h4>Expense</h4>
 
                                             <div class="row">
-                                                <div class="input-field col s12">
-                                                    <textarea id="expenseDescription" type="text" class="materialize-textarea validate" name="expensedescription"></textarea>
-                                                    <label for="expenseDescription">Description</label>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="input-field col s12 m6">
-                                                    <select id="expensetype" name="expensetype">
+                                                <form class="col s12" method="post" action="/expense">
+                                                    <div class="row modal-form-row">
+                                                        <div class="input-field col s12">
+                                                            <input id="expenseAmount" type="number" name="expenseamount" class="validate">
+                                                            <label for="expenseamount">Amount</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="input-field col s12">
+                                                            <textarea id="expenseDescription" type="text" class="materialize-textarea validate" name="expensedescription"></textarea>
+                                                            <label for="expenseDescription">Description</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="input-field col s12 m6">
+                                                            <select id="expensetype" name="expensetype">
                                             <option>Clothing</option>
                                             <option>Education</option>
                                             <option>Entertainment</option>
@@ -206,69 +229,69 @@
                                             <option>Payments</option>
                                             <option>Transportation</option>
                                         </select>
-                                                    <label>Expense Type</label>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
-                                                <button type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Dismiss</button>
+                                                            <label>Expense Type</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
+                                                        <button type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Dismiss</button>
 
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </form>
+                                        </div>
+
                                     </div>
-                                </div>
-
-                            </div>
 
 
-                            <div id="budgetModal" class="modal" style="max-width:400px;">
-                                <div class="modal-content">
-                                    <h4>Budget</h4>
+                                    <div id="budgetModal" class="modal" style="max-width:400px;">
+                                        <div class="modal-content">
+                                            <h4>Budget</h4>
+
+                                            <div class="row">
+                                                <form class="col s12" method="post" action="/budget">
+                                                    <div class="row modal-form-row">
+                                                        <div class="input-field col s12">
+                                                            <input id="budgetAmount" type="number" name="budgetamount" class="validate">
+                                                            <label for="budgetamount">Amount</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
+                                                        <button type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Dismiss</button>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
 
                                     <div class="row">
-                                        <form class="col s12" method="post" action="/budget">
-                                            <div class="row modal-form-row">
-                                                <div class="input-field col s12">
-                                                    <input id="budgetAmount" type="number" name="budgetamount" class="validate">
-                                                    <label for="budgetamount">Amount</label>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
-                                                <button type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Dismiss</button>
-
-                                            </div>
-                                        </form>
+                                        <div class="col l6">
+                                            <div id="chart" style="width: 500px; height:300px;"></div>
+                                        </div>
+                                        <div class="col l6">
+                                            <div id="expensechart" style="width: 500px; height:300px;" class="right"></div>
+                                        </div>
                                     </div>
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col l6 ">
+                                            <div id="barchartIncome" style="width: 500px; height:300px;"></div>
+                                        </div>
+                                        <div class="col l6">
+                                            <div id="barchartExpense" style="width: 500px; height:300px;" class="right"></div>
+                                        </div>
+                                    </div>
+
                                 </div>
-
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col l6">
-                                    <div id="chart" style="width: 500px; height:300px;"></div>
-                                </div>
-                                <div class="col l6">
-                                    <div id="expensechart" style="width: 500px; height:300px;" class="right"></div>
-                                </div>
-                            </div>
-                            <br>
-                            <br>
-                            <div class="row">
-                                <div class="col l6 ">
-                                    <div id="barchartIncome" style="width: 500px; height:300px;"></div>
-                                </div>
-                                <div class="col l6">
-                                    <div id="barchartExpense" style="width: 500px; height:300px;" class="right"></div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-                            crossorigin="anonymous"></script>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+                                <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                                    crossorigin="anonymous"></script>
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 
 
-                        <script src="js/app.js"></script>
+                                <script src="js/app.js"></script>
 </body>
