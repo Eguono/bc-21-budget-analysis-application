@@ -32,6 +32,10 @@ module.exports.dashboard = (req, res) => {
                                         budgetBalance = result[2] - result[0];
                                         percent = Math.floor(result[0] / result[2] * 100);
                                     }
+                                    if (budgetBalance < 0) {
+                                        budgetBalnce = -budgetBalance;
+
+                                    }
 
                                     res.render("dashboard", { error: null, expense: result[0], income: result[1], user: snap.val(), balance: balance, budget: result[2], budgetbalance: budgetBalance, percent: percent });
                                 })
