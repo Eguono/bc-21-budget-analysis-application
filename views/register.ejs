@@ -1,6 +1,16 @@
 <% include partials/head %>
 <main>
   <center>
+  <% if(error ) { %>
+          <script>
+            window.onload = function () {
+
+              Materialize.toast('<%= error %>', 4000)
+            };
+          </script>
+
+
+          <% } %>
     <img class="responsive-img" style="width: 350px; padding-top:20px;" src="/img/budget.jpg" alt="AuthApp Login Image" />
     <div class="section"></div>
 
