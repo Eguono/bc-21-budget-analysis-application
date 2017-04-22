@@ -8,6 +8,11 @@ const api = require("../controller/api.js");
 module.exports = (app, route) => {
     app.route("/")
         .get((req, res) => {
+            res.render("index");
+        });
+
+    app.route("/login")
+        .get((req, res) => {
             res.render("login", { error: null });
         }).post(auth.login);
 
