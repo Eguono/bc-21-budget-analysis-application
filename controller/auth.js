@@ -6,8 +6,8 @@ const ref = db.ref('/');
 
 
 module.exports.register = (req, res) => {
-    let firstName = req.body.firstName;
-    let lastName = req.body.lastName;
+    let firstName = req.body.firstname;
+    let lastName = req.body.lastname;
     let email = req.body.email;
     let password = req.body.password;
     let password1 = req.body.password1;
